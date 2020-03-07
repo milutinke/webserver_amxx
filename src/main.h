@@ -1,6 +1,8 @@
 #ifndef _MAIN_H_INCLUDED
 #define _MAIN_H_INCLUDED
 
+#include <string.h>
+
 #include <sys/types.h>
 #ifndef _WIN32
 #include <sys/select.h>
@@ -17,10 +19,11 @@
 
 #include "amxxsdk/amxxmodule.h"
 
+#include <extdll.h>
+#include <enginecallback.h>
+
 #include "WSResponse.h"
 #include "RequestCallback.h"
-#include "RequestInfo.h"
-
 
 // We only care for IPv4
 #define WS_ADDRESS_LENGTH 16
