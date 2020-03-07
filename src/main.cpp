@@ -24,7 +24,7 @@ void OnAmxxDetach(void)
 	g_ResponseHandles.clear();
 	g_RequestCallbacks.clear();
 
-	RETURN_META(MRES_IGNORED);
+	//RETURN_META(MRES_IGNORED);
 }
 
 void OnAmxxAttach(void) 
@@ -35,7 +35,7 @@ void OnAmxxAttach(void)
 	const char *szPort;
 	uint16_t iPort;
 
-	if ((szPort = strstr(szIp, ":")) != nullptr && (szPort + 1) != '\0')
+	if ((szPort = strstr(szIp, ":")) != nullptr && *(szPort + 1) != '\0')
 	{
 		iPort = atoi(szPort + 1);
 	}
@@ -57,7 +57,7 @@ void OnAmxxAttach(void)
 
 	MF_Log("Successfully started HTTP Daemon on port %i", iPort);
 
-	RETURN_META(MRES_IGNORED);
+	//RETURN_META(MRES_IGNORED);
 }
 
 void OnStartFrame(void)
@@ -92,7 +92,7 @@ int MHDConnectionCallback(void *cls, struct MHD_Connection *connection, const ch
 	{
 		RequestCallback *rc = g_RequestCallbacks[i];
 		
-		if (FStrEq(rc->m_Ident.chars(), ident))
+		if (strcmp(rc->m_Ident.chars(), ident) == 0)
 		{
 			ret = MF_ExecuteForward(rc->m_Forward, connection, method, end);
 			if (ret == -1) 
